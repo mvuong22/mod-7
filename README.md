@@ -1,0 +1,5 @@
+This project represents the first phase of a Data Management System, centered entirely on implementing and testing CRUD operations in Java. The system manages custom objects and provides the foundational logic needed to store, retrieve, update, and remove data. 
+All operations were built with a strong focus on object-oriented structure, ensuring that each action is handled through clear, organized methods. During this phase, the goal was to confirm that each CRUD function behaves correctly and consistently under different conditions. 
+The program includes input validation to prevent invalid changes, avoids crashes, and ensures that every update reflects accurately in the underlying data structure. 
+The testing suite prints the results directly to the console, making it easy to verify the behavior of each method as objects are created, viewed, modified, and deleted.
+This stage establishes the core functionality that later phases will expand upon. By validating the logic independently before layering any additional components, the project ensures that the core data operations remain stable, predictable, and ready for future integration.
