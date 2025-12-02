@@ -1,105 +1,85 @@
-<html>
-<head>
-<title>AppController.java</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<style type="text/css">
-.s0 { color: #cf8e6d;}
-.s1 { color: #bcbec4;}
-.s2 { color: #bcbec4;}
-.s3 { color: #7a7e85;}
-.s4 { color: #6aab73;}
-</style>
-</head>
-<body bgcolor="#1e1f22">
-<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
-<tr><td><center>
-<font face="Arial, Helvetica" color="#000000">
-AppController.java</font>
-</center></td></tr></table>
-<pre><span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">ArrayList</span><span class="s2">;</span>
-<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+// AppController.java
+import java.util.ArrayList;
+import java.util.List;
 
-<span class="s3">// Controls all actions between UI and Repository</span>
-<span class="s0">public class </span><span class="s1">AppController </span><span class="s2">{</span>
-    <span class="s0">private </span><span class="s1">WhaleRepository repository </span><span class="s2">= </span><span class="s0">new </span><span class="s1">WhaleRepository</span><span class="s2">();</span>
+// Controls all actions between UI and Repository
+public class AppController {
+    private WhaleRepository repository = new WhaleRepository();
 
-    <span class="s3">// Add a whale</span>
-    <span class="s0">public boolean </span><span class="s1">addWhale</span><span class="s2">(</span><span class="s1">String id</span><span class="s2">, </span><span class="s1">String scientificName</span><span class="s2">, </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">commonNames</span><span class="s2">,</span>
-                            <span class="s0">double </span><span class="s1">length</span><span class="s2">, </span><span class="s0">double </span><span class="s1">weight</span><span class="s2">, </span><span class="s1">String status</span><span class="s2">, </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">habitats</span><span class="s2">) {</span>
-        <span class="s0">if </span><span class="s2">(!</span><span class="s1">WhaleValidator</span><span class="s2">.</span><span class="s1">isValidSpeciesId</span><span class="s2">(</span><span class="s1">id</span><span class="s2">) ||</span>
-                <span class="s2">!</span><span class="s1">WhaleValidator</span><span class="s2">.</span><span class="s1">isValidScientificName</span><span class="s2">(</span><span class="s1">scientificName</span><span class="s2">) ||</span>
-                <span class="s2">!</span><span class="s1">WhaleValidator</span><span class="s2">.</span><span class="s1">isValidList</span><span class="s2">(</span><span class="s1">commonNames</span><span class="s2">) ||</span>
-                <span class="s2">!</span><span class="s1">WhaleValidator</span><span class="s2">.</span><span class="s1">isValidPositiveDouble</span><span class="s2">(</span><span class="s1">length</span><span class="s2">) ||</span>
-                <span class="s2">!</span><span class="s1">WhaleValidator</span><span class="s2">.</span><span class="s1">isValidPositiveDouble</span><span class="s2">(</span><span class="s1">weight</span><span class="s2">) ||</span>
-                <span class="s2">!</span><span class="s1">WhaleValidator</span><span class="s2">.</span><span class="s1">isValidConservationStatus</span><span class="s2">(</span><span class="s1">status</span><span class="s2">) ||</span>
-                <span class="s2">!</span><span class="s1">WhaleValidator</span><span class="s2">.</span><span class="s1">isValidList</span><span class="s2">(</span><span class="s1">habitats</span><span class="s2">)) {</span>
-            <span class="s0">return false</span><span class="s2">;</span>
-        <span class="s2">}</span>
+    // Add a whale
+    public boolean addWhale(String id, String scientificName, List<String> commonNames,
+                            double length, double weight, String status, List<String> habitats) {
+        if (!WhaleValidator.isValidSpeciesId(id) ||
+                !WhaleValidator.isValidScientificName(scientificName) ||
+                !WhaleValidator.isValidList(commonNames) ||
+                !WhaleValidator.isValidPositiveDouble(length) ||
+                !WhaleValidator.isValidPositiveDouble(weight) ||
+                !WhaleValidator.isValidConservationStatus(status) ||
+                !WhaleValidator.isValidList(habitats)) {
+            return false;
+        }
 
-        <span class="s3">// Convert string status to enum</span>
-        <span class="s1">ConservationStatus cs </span><span class="s2">= </span><span class="s1">ConservationStatus</span><span class="s2">.</span><span class="s1">valueOf</span><span class="s2">(</span><span class="s1">status</span><span class="s2">.</span><span class="s1">toUpperCase</span><span class="s2">().</span><span class="s1">replace</span><span class="s2">(</span><span class="s4">&quot; &quot;</span><span class="s2">, </span><span class="s4">&quot;_&quot;</span><span class="s2">));</span>
-        <span class="s1">Whale whale </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Whale</span><span class="s2">(</span><span class="s1">id</span><span class="s2">, </span><span class="s1">scientificName</span><span class="s2">, </span><span class="s1">commonNames</span><span class="s2">, </span><span class="s1">length</span><span class="s2">, </span><span class="s1">weight</span><span class="s2">, </span><span class="s1">cs</span><span class="s2">, </span><span class="s1">habitats</span><span class="s2">);</span>
-        <span class="s0">return </span><span class="s1">repository</span><span class="s2">.</span><span class="s1">addWhale</span><span class="s2">(</span><span class="s1">whale</span><span class="s2">);</span>
-    <span class="s2">}</span>
+        // Convert string status to enum
+        ConservationStatus cs = ConservationStatus.valueOf(status.toUpperCase().replace(" ", "_"));
+        Whale whale = new Whale(id, scientificName, commonNames, length, weight, cs, habitats);
+        return repository.addWhale(whale);
+    }
 
-    <span class="s3">// Remove whale</span>
-    <span class="s0">public boolean </span><span class="s1">removeWhale</span><span class="s2">(</span><span class="s1">String id</span><span class="s2">) {</span>
-        <span class="s0">if </span><span class="s2">(</span><span class="s1">repository</span><span class="s2">.</span><span class="s1">getAllWhales</span><span class="s2">().</span><span class="s1">isEmpty</span><span class="s2">()) </span><span class="s0">return false</span><span class="s2">; </span><span class="s3">// nothing to remove</span>
-        <span class="s0">return </span><span class="s1">repository</span><span class="s2">.</span><span class="s1">removeWhale</span><span class="s2">(</span><span class="s1">id</span><span class="s2">);</span>
-    <span class="s2">}</span>
+    // Remove whale
+    public boolean removeWhale(String id) {
+        if (repository.getAllWhales().isEmpty()) return false; // nothing to remove
+        return repository.removeWhale(id);
+    }
 
-    <span class="s3">// Update whale</span>
-    <span class="s0">public boolean </span><span class="s1">updateWhale</span><span class="s2">(</span><span class="s1">String id</span><span class="s2">, </span><span class="s1">String scientificName</span><span class="s2">, </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">commonNames</span><span class="s2">,</span>
-                               <span class="s0">double </span><span class="s1">length</span><span class="s2">, </span><span class="s0">double </span><span class="s1">weight</span><span class="s2">, </span><span class="s1">String status</span><span class="s2">, </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">habitats</span><span class="s2">) {</span>
-        <span class="s0">if </span><span class="s2">(</span><span class="s1">repository</span><span class="s2">.</span><span class="s1">getAllWhales</span><span class="s2">().</span><span class="s1">isEmpty</span><span class="s2">()) </span><span class="s0">return false</span><span class="s2">; </span><span class="s3">// nothing to update</span>
-        <span class="s1">Whale existing </span><span class="s2">= </span><span class="s1">repository</span><span class="s2">.</span><span class="s1">getWhaleById</span><span class="s2">(</span><span class="s1">id</span><span class="s2">);</span>
-        <span class="s0">if </span><span class="s2">(</span><span class="s1">existing </span><span class="s2">== </span><span class="s0">null</span><span class="s2">) </span><span class="s0">return false</span><span class="s2">; </span><span class="s3">// ID not found</span>
+    // Update whale
+    public boolean updateWhale(String id, String scientificName, List<String> commonNames,
+                               double length, double weight, String status, List<String> habitats) {
+        if (repository.getAllWhales().isEmpty()) return false; // nothing to update
+        Whale existing = repository.getWhaleById(id);
+        if (existing == null) return false; // ID not found
 
-        <span class="s3">// Convert string status to enum</span>
-        <span class="s1">ConservationStatus cs </span><span class="s2">= </span><span class="s1">ConservationStatus</span><span class="s2">.</span><span class="s1">valueOf</span><span class="s2">(</span><span class="s1">status</span><span class="s2">.</span><span class="s1">toUpperCase</span><span class="s2">().</span><span class="s1">replace</span><span class="s2">(</span><span class="s4">&quot; &quot;</span><span class="s2">, </span><span class="s4">&quot;_&quot;</span><span class="s2">));</span>
-        <span class="s1">Whale updated </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Whale</span><span class="s2">(</span><span class="s1">id</span><span class="s2">, </span><span class="s1">scientificName</span><span class="s2">, </span><span class="s1">commonNames</span><span class="s2">, </span><span class="s1">length</span><span class="s2">, </span><span class="s1">weight</span><span class="s2">, </span><span class="s1">cs</span><span class="s2">, </span><span class="s1">habitats</span><span class="s2">);</span>
-        <span class="s0">return </span><span class="s1">repository</span><span class="s2">.</span><span class="s1">updateWhale</span><span class="s2">(</span><span class="s1">id</span><span class="s2">, </span><span class="s1">updated</span><span class="s2">);</span>
-    <span class="s2">}</span>
+        // Convert string status to enum
+        ConservationStatus cs = ConservationStatus.valueOf(status.toUpperCase().replace(" ", "_"));
+        Whale updated = new Whale(id, scientificName, commonNames, length, weight, cs, habitats);
+        return repository.updateWhale(id, updated);
+    }
 
-    <span class="s3">// Display all whales</span>
-    <span class="s0">public void </span><span class="s1">displayAll</span><span class="s2">() {</span>
-        <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Whale</span><span class="s2">&gt; </span><span class="s1">whales </span><span class="s2">= </span><span class="s1">repository</span><span class="s2">.</span><span class="s1">getAllWhales</span><span class="s2">();</span>
-        <span class="s0">if </span><span class="s2">(</span><span class="s1">whales</span><span class="s2">.</span><span class="s1">isEmpty</span><span class="s2">()) {</span>
-            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">Hmmm.. Looks like your log doesn't have any whales yet. Let's try adding some!&quot;</span><span class="s2">);</span>
-        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
-            <span class="s0">for </span><span class="s2">(</span><span class="s1">Whale w </span><span class="s2">: </span><span class="s1">whales</span><span class="s2">) </span><span class="s1">w</span><span class="s2">.</span><span class="s1">display</span><span class="s2">();</span>
-        <span class="s2">}</span>
-    <span class="s2">}</span>
+    // Display all whales
+    public void displayAll() {
+        List<Whale> whales = repository.getAllWhales();
+        if (whales.isEmpty()) {
+            System.out.println("\nHmmm.. Looks like your log doesn't have any whales yet. Let's try adding some!");
+        } else {
+            for (Whale w : whales) w.display();
+        }
+    }
 
-    <span class="s3">// Custom action: Conservation Overview</span>
-    <span class="s0">public void </span><span class="s1">conservationOverview</span><span class="s2">() {</span>
-        <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Whale</span><span class="s2">&gt; </span><span class="s1">whales </span><span class="s2">= </span><span class="s1">repository</span><span class="s2">.</span><span class="s1">getAllWhales</span><span class="s2">();</span>
-        <span class="s0">if </span><span class="s2">(</span><span class="s1">whales</span><span class="s2">.</span><span class="s1">isEmpty</span><span class="s2">()) {</span>
-            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">Hold your flippers Explorer! There's no whales yet, add some whales first.&quot;</span><span class="s2">);</span>
-            <span class="s0">return</span><span class="s2">;</span>
-        <span class="s2">}</span>
+    // Custom action: Conservation Overview
+    public void conservationOverview() {
+        List<Whale> whales = repository.getAllWhales();
+        if (whales.isEmpty()) {
+            System.out.println("\nHold your flippers Explorer! There's no whales yet, add some whales first.");
+            return;
+        }
 
-        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&lt;====== Conservation Overview ======&gt;</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s2">);</span>
-        <span class="s0">for </span><span class="s2">(</span><span class="s1">ConservationStatus cs </span><span class="s2">: </span><span class="s1">ConservationStatus</span><span class="s2">.</span><span class="s1">values</span><span class="s2">()) {</span>
-            <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">species </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
-            <span class="s0">for </span><span class="s2">(</span><span class="s1">Whale w </span><span class="s2">: </span><span class="s1">whales</span><span class="s2">) {</span>
-                <span class="s0">if </span><span class="s2">(</span><span class="s1">w</span><span class="s2">.</span><span class="s1">getConservationStatus</span><span class="s2">() == </span><span class="s1">cs</span><span class="s2">) </span><span class="s1">species</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">w</span><span class="s2">.</span><span class="s1">getScientificName</span><span class="s2">());</span>
-            <span class="s2">}</span>
-            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s1">cs </span><span class="s2">+ </span><span class="s4">&quot; (&quot; </span><span class="s2">+ </span><span class="s1">species</span><span class="s2">.</span><span class="s1">size</span><span class="s2">() + </span><span class="s4">&quot;): &quot; </span><span class="s2">+ </span><span class="s1">String</span><span class="s2">.</span><span class="s1">join</span><span class="s2">(</span><span class="s4">&quot;, &quot;</span><span class="s2">, </span><span class="s1">species</span><span class="s2">));</span>
-        <span class="s2">}</span>
-        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">Sorted &amp; saved!&quot;</span><span class="s2">);</span>
-    <span class="s2">}</span>
+        System.out.println("\n<====== Conservation Overview ======>\n");
+        for (ConservationStatus cs : ConservationStatus.values()) {
+            List<String> species = new ArrayList<>();
+            for (Whale w : whales) {
+                if (w.getConservationStatus() == cs) species.add(w.getScientificName());
+            }
+            System.out.println(cs + " (" + species.size() + "): " + String.join(", ", species));
+        }
+        System.out.println("\nSorted & saved!");
+    }
 
-    <span class="s3">// Public getter for all whales (used by MenuUI)</span>
-    <span class="s0">public </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Whale</span><span class="s2">&gt; </span><span class="s1">getAllWhales</span><span class="s2">() {</span>
-        <span class="s0">return </span><span class="s1">repository</span><span class="s2">.</span><span class="s1">getAllWhales</span><span class="s2">();</span>
-    <span class="s2">}</span>
+    // Public getter for all whales (used by MenuUI)
+    public List<Whale> getAllWhales() {
+        return repository.getAllWhales();
+    }
 
-    <span class="s3">// Public getter for single whale by ID (used by MenuUI)</span>
-    <span class="s0">public </span><span class="s1">Whale getWhaleById</span><span class="s2">(</span><span class="s1">String id</span><span class="s2">) {</span>
-        <span class="s0">return </span><span class="s1">repository</span><span class="s2">.</span><span class="s1">getWhaleById</span><span class="s2">(</span><span class="s1">id</span><span class="s2">);</span>
-    <span class="s2">}</span>
-<span class="s2">}</span>
-</pre>
-</body>
-</html>
+    // Public getter for single whale by ID (used by MenuUI)
+    public Whale getWhaleById(String id) {
+        return repository.getWhaleById(id);
+    }
+}
