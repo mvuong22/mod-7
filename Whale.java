@@ -1,80 +1,60 @@
-<html>
-<head>
-<title>Whale.java</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<style type="text/css">
-.s0 { color: #cf8e6d;}
-.s1 { color: #bcbec4;}
-.s2 { color: #bcbec4;}
-.s3 { color: #7a7e85;}
-.s4 { color: #6aab73;}
-</style>
-</head>
-<body bgcolor="#1e1f22">
-<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
-<tr><td><center>
-<font face="Arial, Helvetica" color="#000000">
-Whale.java</font>
-</center></td></tr></table>
-<pre><span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+// Whale.java
+import java.util.List;
 
-<span class="s3">// Whale object to store all attributes</span>
-<span class="s0">public class </span><span class="s1">Whale </span><span class="s2">{</span>
-    <span class="s0">private </span><span class="s1">String speciesId</span><span class="s2">;               </span><span class="s3">// Unique ID</span>
-    <span class="s0">private </span><span class="s1">String scientificName</span><span class="s2">;          </span><span class="s3">// Scientific name</span>
-    <span class="s0">private </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">commonNames</span><span class="s2">;       </span><span class="s3">// List of common names</span>
-    <span class="s0">private double </span><span class="s1">avgLengthMeters</span><span class="s2">;         </span><span class="s3">// Average length</span>
-    <span class="s0">private double </span><span class="s1">avgWeightTons</span><span class="s2">;           </span><span class="s3">// Average weight</span>
-    <span class="s0">private </span><span class="s1">ConservationStatus conservationStatus</span><span class="s2">; </span><span class="s3">// Conservation status</span>
-    <span class="s0">private </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">habitatRegions</span><span class="s2">;    </span><span class="s3">// List of habitat regions</span>
+// Whale object to store all attributes
+public class Whale {
+    private String speciesId;               // Unique ID
+    private String scientificName;          // Scientific name
+    private List<String> commonNames;       // List of common names
+    private double avgLengthMeters;         // Average length
+    private double avgWeightTons;           // Average weight
+    private ConservationStatus conservationStatus; // Conservation status
+    private List<String> habitatRegions;    // List of habitat regions
 
-    <span class="s3">// Constructor</span>
-    <span class="s0">public </span><span class="s1">Whale</span><span class="s2">(</span><span class="s1">String speciesId</span><span class="s2">, </span><span class="s1">String scientificName</span><span class="s2">, </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">commonNames</span><span class="s2">,</span>
-                 <span class="s0">double </span><span class="s1">avgLengthMeters</span><span class="s2">, </span><span class="s0">double </span><span class="s1">avgWeightTons</span><span class="s2">,</span>
-                 <span class="s1">ConservationStatus conservationStatus</span><span class="s2">, </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">habitatRegions</span><span class="s2">) {</span>
-        <span class="s0">this</span><span class="s2">.</span><span class="s1">speciesId </span><span class="s2">= </span><span class="s1">speciesId</span><span class="s2">;</span>
-        <span class="s0">this</span><span class="s2">.</span><span class="s1">scientificName </span><span class="s2">= </span><span class="s1">scientificName</span><span class="s2">;</span>
-        <span class="s0">this</span><span class="s2">.</span><span class="s1">commonNames </span><span class="s2">= </span><span class="s1">commonNames</span><span class="s2">;</span>
-        <span class="s0">this</span><span class="s2">.</span><span class="s1">avgLengthMeters </span><span class="s2">= </span><span class="s1">avgLengthMeters</span><span class="s2">;</span>
-        <span class="s0">this</span><span class="s2">.</span><span class="s1">avgWeightTons </span><span class="s2">= </span><span class="s1">avgWeightTons</span><span class="s2">;</span>
-        <span class="s0">this</span><span class="s2">.</span><span class="s1">conservationStatus </span><span class="s2">= </span><span class="s1">conservationStatus</span><span class="s2">;</span>
-        <span class="s0">this</span><span class="s2">.</span><span class="s1">habitatRegions </span><span class="s2">= </span><span class="s1">habitatRegions</span><span class="s2">;</span>
-    <span class="s2">}</span>
+    // Constructor
+    public Whale(String speciesId, String scientificName, List<String> commonNames,
+                 double avgLengthMeters, double avgWeightTons,
+                 ConservationStatus conservationStatus, List<String> habitatRegions) {
+        this.speciesId = speciesId;
+        this.scientificName = scientificName;
+        this.commonNames = commonNames;
+        this.avgLengthMeters = avgLengthMeters;
+        this.avgWeightTons = avgWeightTons;
+        this.conservationStatus = conservationStatus;
+        this.habitatRegions = habitatRegions;
+    }
 
-    <span class="s3">// Getters and Setters</span>
-    <span class="s0">public </span><span class="s1">String getSpeciesId</span><span class="s2">() { </span><span class="s0">return </span><span class="s1">speciesId</span><span class="s2">; }</span>
-    <span class="s0">public void </span><span class="s1">setSpeciesId</span><span class="s2">(</span><span class="s1">String speciesId</span><span class="s2">) { </span><span class="s0">this</span><span class="s2">.</span><span class="s1">speciesId </span><span class="s2">= </span><span class="s1">speciesId</span><span class="s2">; }</span>
+    // Getters and Setters
+    public String getSpeciesId() { return speciesId; }
+    public void setSpeciesId(String speciesId) { this.speciesId = speciesId; }
 
-    <span class="s0">public </span><span class="s1">String getScientificName</span><span class="s2">() { </span><span class="s0">return </span><span class="s1">scientificName</span><span class="s2">; }</span>
-    <span class="s0">public void </span><span class="s1">setScientificName</span><span class="s2">(</span><span class="s1">String scientificName</span><span class="s2">) { </span><span class="s0">this</span><span class="s2">.</span><span class="s1">scientificName </span><span class="s2">= </span><span class="s1">scientificName</span><span class="s2">; }</span>
+    public String getScientificName() { return scientificName; }
+    public void setScientificName(String scientificName) { this.scientificName = scientificName; }
 
-    <span class="s0">public </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">getCommonNames</span><span class="s2">() { </span><span class="s0">return </span><span class="s1">commonNames</span><span class="s2">; }</span>
-    <span class="s0">public void </span><span class="s1">setCommonNames</span><span class="s2">(</span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">commonNames</span><span class="s2">) { </span><span class="s0">this</span><span class="s2">.</span><span class="s1">commonNames </span><span class="s2">= </span><span class="s1">commonNames</span><span class="s2">; }</span>
+    public List<String> getCommonNames() { return commonNames; }
+    public void setCommonNames(List<String> commonNames) { this.commonNames = commonNames; }
 
-    <span class="s0">public double </span><span class="s1">getAvgLengthMeters</span><span class="s2">() { </span><span class="s0">return </span><span class="s1">avgLengthMeters</span><span class="s2">; }</span>
-    <span class="s0">public void </span><span class="s1">setAvgLengthMeters</span><span class="s2">(</span><span class="s0">double </span><span class="s1">avgLengthMeters</span><span class="s2">) { </span><span class="s0">this</span><span class="s2">.</span><span class="s1">avgLengthMeters </span><span class="s2">= </span><span class="s1">avgLengthMeters</span><span class="s2">; }</span>
+    public double getAvgLengthMeters() { return avgLengthMeters; }
+    public void setAvgLengthMeters(double avgLengthMeters) { this.avgLengthMeters = avgLengthMeters; }
 
-    <span class="s0">public double </span><span class="s1">getAvgWeightTons</span><span class="s2">() { </span><span class="s0">return </span><span class="s1">avgWeightTons</span><span class="s2">; }</span>
-    <span class="s0">public void </span><span class="s1">setAvgWeightTons</span><span class="s2">(</span><span class="s0">double </span><span class="s1">avgWeightTons</span><span class="s2">) { </span><span class="s0">this</span><span class="s2">.</span><span class="s1">avgWeightTons </span><span class="s2">= </span><span class="s1">avgWeightTons</span><span class="s2">; }</span>
+    public double getAvgWeightTons() { return avgWeightTons; }
+    public void setAvgWeightTons(double avgWeightTons) { this.avgWeightTons = avgWeightTons; }
 
-    <span class="s0">public </span><span class="s1">ConservationStatus getConservationStatus</span><span class="s2">() { </span><span class="s0">return </span><span class="s1">conservationStatus</span><span class="s2">; }</span>
-    <span class="s0">public void </span><span class="s1">setConservationStatus</span><span class="s2">(</span><span class="s1">ConservationStatus conservationStatus</span><span class="s2">) { </span><span class="s0">this</span><span class="s2">.</span><span class="s1">conservationStatus </span><span class="s2">= </span><span class="s1">conservationStatus</span><span class="s2">; }</span>
+    public ConservationStatus getConservationStatus() { return conservationStatus; }
+    public void setConservationStatus(ConservationStatus conservationStatus) { this.conservationStatus = conservationStatus; }
 
-    <span class="s0">public </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">getHabitatRegions</span><span class="s2">() { </span><span class="s0">return </span><span class="s1">habitatRegions</span><span class="s2">; }</span>
-    <span class="s0">public void </span><span class="s1">setHabitatRegions</span><span class="s2">(</span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">habitatRegions</span><span class="s2">) { </span><span class="s0">this</span><span class="s2">.</span><span class="s1">habitatRegions </span><span class="s2">= </span><span class="s1">habitatRegions</span><span class="s2">; }</span>
+    public List<String> getHabitatRegions() { return habitatRegions; }
+    public void setHabitatRegions(List<String> habitatRegions) { this.habitatRegions = habitatRegions; }
 
-    <span class="s3">// Display whale info</span>
-    <span class="s0">public void </span><span class="s1">display</span><span class="s2">() {</span>
-        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">ID: &quot; </span><span class="s2">+ </span><span class="s1">speciesId</span><span class="s2">);</span>
-        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;Scientific Name: &quot; </span><span class="s2">+ </span><span class="s1">scientificName</span><span class="s2">);</span>
-        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;Common Names: &quot; </span><span class="s2">+ </span><span class="s1">String</span><span class="s2">.</span><span class="s1">join</span><span class="s2">(</span><span class="s4">&quot;, &quot;</span><span class="s2">, </span><span class="s1">commonNames</span><span class="s2">));</span>
-        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;Average Length (m): &quot; </span><span class="s2">+ </span><span class="s1">avgLengthMeters</span><span class="s2">);</span>
-        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;Average Weight (tons): &quot; </span><span class="s2">+ </span><span class="s1">avgWeightTons</span><span class="s2">);</span>
-        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;Conservation Status: &quot; </span><span class="s2">+ </span><span class="s1">conservationStatus</span><span class="s2">);</span>
-        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;Habitat Regions: &quot; </span><span class="s2">+ </span><span class="s1">String</span><span class="s2">.</span><span class="s1">join</span><span class="s2">(</span><span class="s4">&quot;, &quot;</span><span class="s2">, </span><span class="s1">habitatRegions</span><span class="s2">));</span>
-        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;-------------------------------&quot;</span><span class="s2">);</span>
-    <span class="s2">}</span>
-<span class="s2">}</span>
-</pre>
-</body>
-</html>
+    // Display whale info
+    public void display() {
+        System.out.println("\nID: " + speciesId);
+        System.out.println("Scientific Name: " + scientificName);
+        System.out.println("Common Names: " + String.join(", ", commonNames));
+        System.out.println("Average Length (m): " + avgLengthMeters);
+        System.out.println("Average Weight (tons): " + avgWeightTons);
+        System.out.println("Conservation Status: " + conservationStatus);
+        System.out.println("Habitat Regions: " + String.join(", ", habitatRegions));
+        System.out.println("-------------------------------");
+    }
+}
